@@ -11,13 +11,20 @@ public static void main() {
             String number = line.substring(1);
             int rotation = Integer.valueOf(number);
 
+            System.out.print("Rotating " + line + "\t");
             if (direction == 'L') {
                 int newNum = pointer - rotation;
+                System.out.print("Rotated to: " + newNum + "\t");
                 if (newNum < 0) {
+                    if (pointer != 0) {
+                        count++;
+                    }
                     pointer = 100 + newNum;
-                    count++;
                     while (pointer < 0) {
                         pointer = 100 + pointer;
+                        count++;
+                    }
+                    if (pointer == 0) {
                         count++;
                     }
                 } else {
@@ -26,19 +33,20 @@ public static void main() {
                     }
                     pointer = newNum;
                 }
+                System.out.print("Final to: " + pointer + "\t");
             } else if (direction == 'R') {
                 int newNum = pointer + rotation;
+                System.out.print("Rotated to: " + newNum + "\t");
                 if (newNum > 99) {
                     int rounds = newNum / 100;
-                    if (rounds > 0) {
-                        count += rounds;
-                    }
+                    count += rounds;
                     pointer = newNum % 100;
-
                 } else {
                     pointer = newNum;
                 }
+                System.out.print("Final to: " + pointer + "\t");
             }
+            System.out.println("\nTotal count: " + count);
         }
     } catch (IOException e) {
         e.printStackTrace();
